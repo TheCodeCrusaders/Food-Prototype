@@ -27,8 +27,8 @@ jobs:
     - name: Install Qt
       run: |
         sudo apt-get update
-        sudo apt-get install qt5-default
-        echo 'export PATH="$PATH:/usr/lib/x86_64-linux-gnu/qt5/bin"' >> $GITHUB_ENV
+        sudo apt-get install qt6-default
+        echo 'export PATH="$PATH:/usr/lib/x86_64-linux-gnu/qt6/bin"' >> $GITHUB_ENV
 
     - name: Build project
       run: |
