@@ -24,6 +24,12 @@ jobs:
       run: |
         source emsdk/emsdk_env.sh
 
+    - name: Install Qt
+      run: |
+        sudo apt-get update
+        sudo apt-get install qt5-default
+        echo 'export PATH="$PATH:/usr/lib/x86_64-linux-gnu/qt5/bin"' >> $GITHUB_ENV
+
     - name: Build project
       run: |
         # Configure the project with qmake
