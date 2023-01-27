@@ -35,7 +35,7 @@ jobs:
     - name: Build project
       run: |
         # Configure the project with qmake
-        qmake path/to/project.pro -spec wasm-emscripten
+        qmake FoodTracker/FoodTracker.pro -spec wasm-emscripten
         # Build the project
         make
 
