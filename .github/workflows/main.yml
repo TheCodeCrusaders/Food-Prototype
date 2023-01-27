@@ -6,20 +6,31 @@ on:
       - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install Emscripten SDK
+      uses: trzeci/emscripten-action@v1
+
+    - name: Set environment variables
+      run: |
+        echo "EMSDK: $EMSDK"
+        source $EMSDK/emsdk_env.sh
+        echo "EMSCRIPTEN: $EMSCRIPTEN"
 
     - name: Build project
       run: |
-        qmake
+        # Configure the project with qmake
+        qmake FoodTracker/FoodTracker.pro -spec wasm-emscripten
+        # Build the project
         make
 
     - name: Deploy to GitHub Pages
-      run: |
-        git config --global user.email "LDK@otterhosting.net"
-        git config --global user.name "DeeKahy"
-        git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-        git subtree push --prefix= FoodTracker origin gh-pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        publish_dir: ./path/to/output/directory
