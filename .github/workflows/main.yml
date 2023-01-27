@@ -1,0 +1,25 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build project
+      run: |
+        qmake
+        make
+
+    - name: Deploy to GitHub Pages
+      run: |
+        git config --global user.email "LDK@otterhosting.net"
+        git config --global user.name "DeeKahy"
+        git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+        git subtree push --prefix= FoodTracker origin gh-pages
