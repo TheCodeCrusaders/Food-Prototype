@@ -13,9 +13,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set environment variables
-      run: |
-        source emsdk/emsdk_env.sh
 
     - name: Install Qt
       run: |
@@ -31,6 +28,9 @@ jobs:
         ./emsdk install latest
         ./emsdk activate latest
         
+    - name: Set environment variables
+      run: |
+        source emsdk/emsdk_env.sh
         
     - name: Build project
       run: |
