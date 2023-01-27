@@ -13,19 +13,21 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Install Emscripten SDK
-      uses: emscripten-action/install-emsdk@v1
+    - name: Install Emscripten
+      run: |
+        git clone https://github.com/emscripten-core/emsdk.git
+        cd emsdk
+        ./emsdk install latest
+        ./emsdk activate latest
 
     - name: Set environment variables
       run: |
-        echo "EMSDK: $EMSDK"
-        source $EMSDK/emsdk_env.sh
-        echo "EMSCRIPTEN: $EMSCRIPTEN"
+        source emsdk/emsdk_env.sh
 
     - name: Build project
       run: |
         # Configure the project with qmake
-        qmake FoodTracker/FoodTracker.pro -spec wasm-emscripten
+        qmake path/to/project.pro -spec wasm-emscripten
         # Build the project
         make
 
