@@ -15,7 +15,7 @@ jobs:
 
     - name: Copy build files to gh-pages branch
       run: |
-        cp -r build/. .
+        cp -r Build/. .
         mv FoodTracker.html index.html
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@releases/v3
