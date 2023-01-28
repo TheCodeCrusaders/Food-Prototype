@@ -97,3 +97,4 @@ void MainWindow::on_listWidge_recepie_itemClicked(QListWidgetItem *item)
     }
 }
 
+
