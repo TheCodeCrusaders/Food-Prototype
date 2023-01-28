@@ -82,3 +82,14 @@ void MainWindow::on_tableWidget_cellChanged(int row, int column)
 }
 
 
+
+void MainWindow::on_listWidge_recepie_itemClicked(QListWidgetItem *item)
+{
+    if(item->text() == "mashed potatoes"){
+        ui->textBrowser_recepie->setText("HMMM mashed potatos, this is how you do dis.");
+    }
+    else if(item->text() == "spicy chicken"){
+        ui->textBrowser_recepie->setText("spicy chicken dinner be a rinder.");
+    }
+}
+

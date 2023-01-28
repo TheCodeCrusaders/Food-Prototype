@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "qlistwidget.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -21,6 +22,8 @@ private slots:
     void on_pushButton_add_item_clicked();
 
     void on_tableWidget_cellChanged(int row, int column);
+
+    void on_listWidge_recepie_itemClicked(QListWidgetItem *item);
 
 private:
     Ui::MainWindow *ui;
