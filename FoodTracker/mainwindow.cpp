@@ -90,6 +90,9 @@ void MainWindow::on_listWidge_recepie_itemClicked(QListWidgetItem *item)
     }
     else if(item->text() == "spicy chicken"){
         ui->textBrowser_recepie->setText("spicy chicken dinner be a rinder.");
+    } else {
+        ui->textBrowser_recepie->setText(item->text() + " recepie is unknown.");
+
     }
 }
 

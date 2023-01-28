@@ -104,6 +104,11 @@
           </item>
           <item>
            <property name="text">
+            <string>meow</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
             <string>spicy chicken</string>
            </property>
           </item>
