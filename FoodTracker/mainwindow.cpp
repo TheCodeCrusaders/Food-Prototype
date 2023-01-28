@@ -93,6 +93,7 @@ void MainWindow::on_listWidge_recepie_itemClicked(QListWidgetItem *item)
     } else {
         ui->textBrowser_recepie->setText(item->text() + " recipe is unknown.");
 
+
     }
 }
 
