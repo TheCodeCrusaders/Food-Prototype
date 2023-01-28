@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - nobracnch
 
 jobs:
   deploy:
@@ -16,7 +16,7 @@ jobs:
     - name: Copy files to gh-pages branch
       run: |
         cp -r Builds/* docs/
-        mv docs/FoodTracker.html docs/index.html
+        mv Builds/FoodTracker.html Builds/index.html
 
     - name: Commit and push changes
       run: |
