@@ -3,6 +3,10 @@
 
 #include <QDate>
 #include <QDateTime>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+#include <QEventLoop>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -96,19 +100,40 @@ void MainWindow::on_tableWidget_cellChanged(int row, int column)
 }
 
 
+QString MainWindow::getRecipeFromUrl(QUrl url)
+{
+    QNetworkAccessManager manager;
+    QNetworkRequest request(url);
+    QNetworkReply *reply = manager.get(request);
+    QEventLoop loop;
+    connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
+    loop.exec();
+
+    return reply->readAll();
+}
+
 
 void MainWindow::on_listWidge_recepie_itemClicked(QListWidgetItem *item)
 {
-    // we need this changed to be web based.
+    /*
+    QUrl url("https://raw.githubusercontent.com/TheCodeCrusaders/Food-Prototype/main/docs/recipes/yes.md");
+    QString recipe = getRecipeFromUrl(url);
+
     if(item->text() == "mashed potatoes"){
-        ui->textBrowser_recepie->setText("HMMM mashed potatos, this is how you do dis.");
+        ui->textBrowser_recepie->setText(recipe);
     }
     else if(item->text() == "spicy chicken"){
-        ui->textBrowser_recepie->setText("spicy chicken dinner be a rinder.");
+        ui->textBrowser_recepie->setText(recipe);
     } else {
         ui->textBrowser_recepie->setText(item->text() + " recipe is unknown.");
-
-
+    }*/
+    if(item->text() == "mashed potatoes"){
+        ui->textBrowser_recepie->setText("lets eat some taters");
+    }
+    else if(item->text() == "spicy chicken"){
+        ui->textBrowser_recepie->setText("chicken sucks");
+    } else {
+        ui->textBrowser_recepie->setText(item->text() + " recipe is unknown.");
     }
 }
 

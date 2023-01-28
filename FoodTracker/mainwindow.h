@@ -3,6 +3,10 @@
 
 #include "qlistwidget.h"
 #include <QMainWindow>
+#include <QUrl>
+
+
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -24,6 +28,7 @@ private slots:
 
 
     void on_tableWidget_cellChanged(int row, int column);
+    QString getRecipeFromUrl(QUrl url);
 
     void on_listWidge_recepie_itemClicked(QListWidgetItem *item);
 
