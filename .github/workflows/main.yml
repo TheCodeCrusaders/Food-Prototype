@@ -12,19 +12,16 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
-
+      
     - name: Install Qt
       run: |
         sudo apt-get update
         sudo apt-get install qt6-base-dev
         sudo apt-get install qtcreator
-        sudo apt-get install qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools
-        sudo apt-get install libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x
-        export PATH=/usr/lib/x86_64-linux-gnu/qt6/bin:$PATH
+        sudo apt-get install gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x
+        export PATH=$PATH:/usr/lib/x86_64-linux-gnu/qt6/bin
         echo 'export PATH="$PATH:/usr/lib/x86_64-linux-gnu/qt6/bin"' >> $GITHUB_ENV
-
-
+        
     - name: Install Emscripten
       run: |
         git clone https://github.com/emscripten-core/emsdk.git
@@ -42,7 +39,7 @@ jobs:
         qmake FoodTracker/FoodTracker.pro -spec emscripten
         # Build the project
         make
-
+        
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
